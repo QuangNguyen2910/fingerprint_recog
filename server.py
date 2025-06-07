@@ -125,7 +125,7 @@ async def upload_fingerprint(file: UploadFile = File(...)):
         input_minutiae = fingerprint_pipeline(img)
         print(f"Extracted minutiae from uploaded image: {input_minutiae}")
         print(f"Number of minutiae points: {len(input_minutiae)}")
-        minutiae_data = load_minutiae_from_json("minutiae_data.json")
+        minutiae_data = load_minutiae_from_json("minutiae_metadata.json")
         print(f"Loaded database with {len(minutiae_data)} entries")
 
         # Calculate scores for all fingerprints
