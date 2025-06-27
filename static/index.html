@@ -256,7 +256,6 @@
             }
         }
 
-        // Add paste event listener for Ctrl+V
         document.addEventListener('paste', async (event) => {
             const items = (event.clipboardData || event.originalEvent.clipboardData).items;
             for (const item of items) {

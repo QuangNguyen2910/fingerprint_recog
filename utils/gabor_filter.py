@@ -70,7 +70,8 @@ def gabor_filter(im, orient, freq, kx=0.65, ky=0.65):
         np.where((valid_row>block_size) & (valid_row<rows - block_size) & (valid_col>block_size) & (valid_col<cols - block_size))
 
     for k in range(0, np.shape(finalind)[1]):
-        r = valid_row[finalind[0][k]]; c = valid_col[finalind[0][k]]
+        r = valid_row[finalind[0][k]]
+        c = valid_col[finalind[0][k]]
         img_block = im[r-block_size:r+block_size + 1][:,c-block_size:c+block_size + 1]
         return_img[r][c] = np.sum(img_block * gabor_filter[int(orientindex[r//16][c//16]) - 1])
 

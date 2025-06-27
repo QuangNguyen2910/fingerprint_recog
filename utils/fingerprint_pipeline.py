@@ -1,7 +1,5 @@
 import cv2 as cv
 from glob import glob
-import os
-import json
 import numpy as np
 from utils.poincare import calculate_singularities
 from utils.segmentation import create_segmented_and_variance_images

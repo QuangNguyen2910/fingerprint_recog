@@ -4,17 +4,8 @@ import cv2 as cv
 
 
 def calculate_angles(im, W, smoth=False):
-    """
-    anisotropy orientation estimate, based on equations 5 from:
-    https://pdfs.semanticscholar.org/6e86/1d0b58bdf7e2e2bb0ecbf274cee6974fe13f.pdf
-    :param im:
-    :param W: int width of the ridge
-    :return: array
-    """
     j1 = lambda x, y: 2 * x * y
     j2 = lambda x, y: x ** 2 - y ** 2
-    j3 = lambda x, y: x ** 2 + y ** 2
-
     (y, x) = im.shape
 
     sobelOperator = [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]
@@ -37,26 +28,18 @@ def calculate_angles(im, W, smoth=False):
                     nominator += j1(Gx, Gy)
                     denominator += j2(Gx, Gy)
 
-            # nominator = round(np.sum(Gy_[j:min(j + W, y - 1), i:min(i + W , x - 1)]))
-            # denominator = round(np.sum(Gx_[j:min(j + W, y - 1), i:min(i + W , x - 1)]))
             if nominator or denominator:
                 angle = (math.pi + math.atan2(nominator, denominator)) / 2
-                orientation = np.pi/2 + math.atan2(nominator,denominator)/2
                 result[int((j-1) // W)].append(angle)
             else:
                 result[int((j-1) // W)].append(0)
-
-            # segment image
-            # focus_img = im[j:min(j + W, y - 1), i:min(i + W , x - 1)]
-            # segmentator = -1 if segmentator/W*W < np.max(focus_img)*
-
+                
     result = np.array(result)
 
     if smoth:
         result = smooth_angles(result)
 
     return result
-
 
 def gauss(x, y):
     ssigma = 1.0
@@ -103,7 +86,6 @@ def get_line_ends(i, j, W, tang):
         begin = (int(i + W/2 + W/(2 * tang)), j + W//2)
         end = (int(i + W/2 - W/(2 * tang)), j - W//2)
     return (begin, end)
-
 
 def visualize_angles(im, mask, angles, W):
     (y, x) = im.shape

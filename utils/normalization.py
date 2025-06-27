@@ -9,17 +9,6 @@ import numpy as np
 
 
 def normalize_pixel(x, v0, v, m, m0):
-    """
-    From Handbook of Fingerprint Recognition pg 133
-    Normalize job used by Hong, Wan and Jain(1998)
-    similar to https://pdfs.semanticscholar.org/6e86/1d0b58bdf7e2e2bb0ecbf274cee6974fe13f.pdf equation 21
-    :param x: pixel value
-    :param v0: desired variance
-    :param v: global image variance
-    :param m: global image mean
-    :param m0: desired mean
-    :return: normilized pixel
-    """
     dev_coeff = sqrt((v0 * ((x - m)**2)) / v)
     return m0 + dev_coeff if x > m else m0 - dev_coeff
 

@@ -20,16 +20,7 @@ def normalise(img):
 
 
 def create_segmented_and_variance_images(im, w, threshold=.2):
-    """
-    Returns mask identifying the ROI. Calculates the standard deviation in each image block and threshold the ROI
-    It also normalises the intesity values of
-    the image so that the ridge regions have zero mean, unit standard
-    deviation.
-    :param im: Image
-    :param w: size of the block
-    :param threshold: std threshold
-    :return: segmented_image
-    """
+
     (y, x) = im.shape
     threshold = np.std(im)*threshold
 

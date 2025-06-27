@@ -1,6 +1,5 @@
 import json
 import numpy as np
-import cv2 as cv
 from skimage.measure import ransac
 from skimage.transform import AffineTransform
 
