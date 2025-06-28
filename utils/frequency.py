@@ -4,17 +4,8 @@ import scipy.ndimage
 
 
 def frequest(im, orientim, kernel_size, minWaveLength, maxWaveLength):
-    """
-    Based on https://pdfs.semanticscholar.org/ca0d/a7c552877e30e1c5d87dfcfb8b5972b0acd9.pdf pg.14
-    Function to estimate the fingerprint ridge frequency within a small block
-    of a fingerprint image.
-    An image block the same size as im with all values set to the estimated ridge spatial frequency.  If a
-    ridge frequency cannot be found, or cannot be found within the limits set by min and max Wavlength freqim is set to zeros.
-    """
     rows, cols = np.shape(im)
     
-    # Find mean orientation within the block. This is done by averaging the
-    # sines and cosines of the doubled angles before reconstructing the angle again.
     cosorient = np.cos(2*orientim) # np.mean(np.cos(2*orientim))
     sinorient = np.sin(2*orientim) # np.mean(np.sin(2*orientim))
     block_orient = math.atan2(sinorient,cosorient)/2

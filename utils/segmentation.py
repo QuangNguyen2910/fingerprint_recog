@@ -34,10 +34,8 @@ def create_segmented_and_variance_images(im, w, threshold=.2):
             block_stddev = np.std(im[box[1]:box[3], box[0]:box[2]])
             image_variance[box[1]:box[3], box[0]:box[2]] = block_stddev
 
-    # apply threshold
     mask[image_variance < threshold] = 0
 
-    # smooth mask with a open/close morphological filter
     kernel = cv.getStructuringElement(cv.MORPH_ELLIPSE,(w*2, w*2))
     mask = cv.morphologyEx(mask, cv.MORPH_OPEN, kernel)
     mask = cv.morphologyEx(mask, cv.MORPH_CLOSE, kernel)

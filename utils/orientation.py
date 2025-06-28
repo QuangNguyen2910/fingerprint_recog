@@ -55,16 +55,7 @@ def kernel_from_function(size, f):
 
 
 def smooth_angles(angles):
-    """
-    reference: https://airccj.org/CSCP/vol7/csit76809.pdf pg91
-    Practically, it is possible to have a block so noisy that the directional estimate is completely false.
-    This then causes a very large angular variation between two adjacent blocks. However, a
-    fingerprint has some directional continuity, such a variation between two adjacent blocks is then
-    representative of a bad estimate. To eliminate such discontinuities, a low-pass filter is applied to
-    the directional board.
-    :param angles:
-    :return:
-    """
+
     angles = np.array(angles)
     cos_angles = np.cos(angles.copy()*2)
     sin_angles = np.sin(angles.copy()*2)

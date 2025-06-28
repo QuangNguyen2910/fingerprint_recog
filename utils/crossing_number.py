@@ -3,11 +3,8 @@ import numpy as np
 
 
 def minutiae_at(pixels, i, j, kernel_size):
-    """
-    Kiểm tra xem điểm (i, j) có phải là minutiae (kết thúc hoặc phân nhánh) hay không.
-    Sử dụng phương pháp Crossing Number.
-    """
-    if pixels[i][j] == 1:  # Nếu pixel là ridge (đen)
+
+    if pixels[i][j] == 1:
         if kernel_size == 3:
             cells = [(-1, -1), (-1, 0), (-1, 1), (0, 1),  (1, 1), 
                      (1, 0),  (1, -1), (0, -1), (-1, -1)]  
@@ -35,16 +32,15 @@ def calculate_minutiaes(im, kernel_size=3):
     Tìm minutiae (điểm kết thúc và phân nhánh) và lưu danh sách đặc trưng.
     """
     binary_image = np.zeros_like(im)
-    binary_image[im < 10] = 1  # Chuyển ảnh sang nhị phân
+    binary_image[im < 10] = 1 
     binary_image = binary_image.astype(np.int8)
 
     (height, width) = im.shape
-    result = cv.cvtColor(im, cv.COLOR_GRAY2RGB)  # Ảnh màu để hiển thị
+    result = cv.cvtColor(im, cv.COLOR_GRAY2RGB)
     colors = {"ending": (150, 0, 0), "bifurcation": (0, 150, 0)}
 
-    minutiae_list = []  # Danh sách lưu minutiae (x, y, loại)
+    minutiae_list = []
 
-    # Quét từng pixel để tìm minutiae
     for i in range(1, width - kernel_size // 2):
         for j in range(1, height - kernel_size // 2):
             minutiae = minutiae_at(binary_image, j, i, kernel_size)
