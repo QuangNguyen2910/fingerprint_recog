@@ -22,3 +22,4 @@ def normalize(im, m0, v0):
             normilize_image[j, i] = normalize_pixel(im[j, i], v0, v, m, m0)
 
     return normilize_image
+

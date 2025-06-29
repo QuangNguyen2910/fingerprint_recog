@@ -74,4 +74,4 @@ if __name__ == '__main__':
     with open("minutiae_feature.json", "w") as f:
         json.dump(minutiae_database, f, indent=4)
 
-    print("✅ SUCCESSFULLY SAVED MINUTIAE AND ANNOTATED IMAGES")
+    print("SUCCESSFULLY SAVED MINUTIAE AND ANNOTATED IMAGES")
