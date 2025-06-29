@@ -1,14 +1,3 @@
-"""
-The principle of gabor filtering is to modify the value of the pixels of an image, generally in order to
-improve its appearance. In practice, it is a matter of creating a new image using the pixel values
-of the original image, in order to select in the Fourier domain the set of frequencies that make up
-the region to be detected. The filter used is the Gabor filter with even symmetry and oriented at 0 degrees.
-
-The resulting image will be the spatial convolution of the original (normalized) image and one of
-the base filters in the direction and local frequency from the two directional and frequency maps
-https://airccj.org/CSCP/vol7/csit76809.pdf pg.91
-"""
-
 import numpy as np
 import scipy
 def gabor_filter(im, orient, freq, kx=0.65, ky=0.65):

@@ -28,9 +28,7 @@ def minutiae_at(pixels, i, j, kernel_size):
 
 
 def calculate_minutiaes(im, kernel_size=3):
-    """
-    Tìm minutiae (điểm kết thúc và phân nhánh) và lưu danh sách đặc trưng.
-    """
+
     binary_image = np.zeros_like(im)
     binary_image[im < 10] = 1 
     binary_image = binary_image.astype(np.int8)

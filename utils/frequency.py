@@ -25,10 +25,7 @@ def frequest(im, orientim, kernel_size, minWaveLength, maxWaveLength):
     maxpts = (ridge_noise < peak_thresh) & (ridge_sum > np.mean(ridge_sum))
     maxind = np.where(maxpts)
     _, no_of_peaks = np.shape(maxind)
-    
-    # Determine the spatial frequency of the ridges by dividing the
-    # distance between the 1st and last peaks by the (No of peaks-1). If no
-    # peaks are detected, or the wavelength is outside the allowed bounds, the frequency image is set to 0
+
     if(no_of_peaks<2):
         freq_block = np.zeros(im.shape)
     else:
@@ -41,8 +38,7 @@ def frequest(im, orientim, kernel_size, minWaveLength, maxWaveLength):
 
 
 def ridge_freq(im, mask, orient, block_size, kernel_size, minWaveLength, maxWaveLength):
-    # Function to estimate the fingerprint ridge frequency across a
-    # fingerprint image.
+
     rows,cols = im.shape
     freq = np.zeros((rows,cols))
 

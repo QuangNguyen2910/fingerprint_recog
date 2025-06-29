@@ -52,6 +52,6 @@ if __name__ == '__main__':
             best_match = fingerprint_id
 
     if best_match:
-        print(f"✅ Ảnh đầu vào khớp với {best_match} ({best_score} điểm khớp)")
+        print(f"Ảnh đầu vào khớp với {best_match} ({best_score} điểm khớp)")
     else:
-        print("❌ Không tìm thấy ảnh vân tay nào khớp")
+        print("Không tìm thấy ảnh vân tay nào khớp")
